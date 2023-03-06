@@ -1,0 +1,31 @@
+#chat-container{
+    width: 500x;
+    margin: 0 auto;
+    text-align: center;
+}
+.chat-message{
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+}
+
+.user-message{
+    text-align: left;
+    margin-left: 10px;
+    background-color: darkkhaki;
+}
+
+.chat-message{
+    text-align: right;
+    margin-left: 10px;
+    background-color: greenyellow
+}
+
+#text-input{
+    width: 60%;
+    height: 30px;
+    font-size: 20px;
+    margin-top: 20px;
+}
+

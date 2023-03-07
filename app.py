@@ -24,7 +24,6 @@ pairs = [
     r"bye|goodbye",
     ["Goodbye, have a great day!", "Bye for now"]
 ]
-]
 
 chatbot = Chat(pairs, reflections)
 

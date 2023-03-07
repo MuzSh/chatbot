@@ -1,43 +1,41 @@
 import nltk
 from nltk.chat.util import Chat, reflections
-from flask import Flask, request, render_template
+from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 
 pairs = [
-    r"my name i s(.*)",
-    ["hello%1, how are you today?. hey %1 how's it going?"]
+    r"my name is (.*)",
+    ["Hello %1, how are you doing today?", "Hi %1, nice to meet you!"]
 ],
 [
     r"what is your name?",
-    ["My name is gene, the greatest bot, nice to meet you"]
+    ["My name is Gene, the greatest bot ever!"]
 ],
 [
-    r"sorry(.*)",
-    ["It's alright", "It's okay", "never give up"]
+    r"sorry (.*)",
+    ["It's alright", "No worries", "Don't apologize"]
 ],
 [
-    r"hey",
-    ["hey what's up?"]
+    r"hi|hello|hey",
+    ["Hey there, how can I help you?", "Hi, what's on your mind?"]
 ],
 [
-    r"quit",
-    ["goodbye", "thank you, come again", "nice to meet you", "have a great day"]   
+    r"bye|goodbye",
+    ["Goodbye, have a great day!", "Bye for now"]
 ]
 
 chatbot = Chat(pairs, reflections)
 
-@app.route("/")
-
+@app.route("/") 
 def index():
     return render_template("index.html")
 
-@app.route("/chat",methods = ["POST"])
-
+@app.route("/chat", methods=["POST"])
 def chat():
-    message = request.form["text"]
+    message = request.form.get("text", "")
     response = chatbot.respond(message)
-    return response
+    return jsonify(response)
 
-if __name__ == '__main__':
-    app.run()
+if __name__ == "__main__":
+    app.run(debug=True)
